@@ -69,3 +69,4 @@ Route::get('/clientes', [ClienteController::class, 'index']);
 
 
 Route::get('/fornecedores', [FornecedorController::class, 'index']);
+

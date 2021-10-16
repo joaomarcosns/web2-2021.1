@@ -16,7 +16,8 @@ class ClienteController extends Controller
     {
         //
         $clientes = Cliente::all();
-        echo $clientes;
+        
+        return view('Cliente.mostrarCliente', ['clientes' => $clientes]);
     }
 
     /**

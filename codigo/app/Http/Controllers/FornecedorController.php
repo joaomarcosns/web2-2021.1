@@ -28,6 +28,7 @@ class FornecedorController extends Controller
     public function create()
     {
         //
+        return view('Fornecedor.cadastarFornecedor');
     }
 
     /**
@@ -39,6 +40,14 @@ class FornecedorController extends Controller
     public function store(Request $request)
     {
         //
+        $Fornecedor = new Fornecedor();
+        $Fornecedor->nome_fornecedor = $request->nome_fornecedor;
+        $Fornecedor->ddd = $request->ddd;
+        $Fornecedor->num_telefone = $request->num_telefone;
+        $Fornecedor->estado = $request->estado;
+        $Fornecedor->cidade = $request->cidade;
+        $Fornecedor->save();
+        return redirect('fornecedores');
     }
 
     /**

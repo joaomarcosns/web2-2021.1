@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FornecedorController;
+use App\Models\Fornecedor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,5 @@ Route::get('/clientes', [ClienteController::class, 'index']);
 
 
 Route::get('/fornecedores', [FornecedorController::class, 'index']);
+Route::get('/fornecedores/cadastrar', [FornecedorController::class, 'create'])->name('cadastrarFornecedorCreate');
+Route::post('/fornecedores/cadastrar', [FornecedorController::class, 'store'])->name('cadastrarFornecedorStore');

@@ -7,7 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Mostrar Fornecedpr</title>
+    <title>Mostrar Fornecedor</title>
 
 </head>
 <body>
@@ -34,8 +34,8 @@
 
     {{-- conteudo --}}
     <div class="container pt-5">
-    <h1>Lista de Fornecedpr</h1>
-    <a href="#" class="btn btn-success mt-2">Adicionar</a>
+    <h1>Lista de Fornecedor</h1>
+    <a href="{{route("cadastrarFornecedorCreate")}}" class="btn btn-success mt-2">Adicionar</a>
     <table class="table table-striped table-hover mt-5">
         <thead>
           <tr>

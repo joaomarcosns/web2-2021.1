@@ -12,8 +12,16 @@ class Venda extends Model
     protected $table = "vendas";
 
     protected $fillable = [
-        'idcliente',
+        'id_cliente',
         'valortotal',
         'datavenda'
     ];
+
+    public function cliente(){
+        return $this->belongsTo(Cliente::class, 'cliente_id','id');
+    }
+
+    function itens_venda(){
+        return $this->hasMany(ItensVenda::class, 'id_venda', 'id');
+    }
 }

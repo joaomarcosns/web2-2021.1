@@ -23,4 +23,14 @@ class Produto extends Model
         'desconto',
         'quantidade'
     ];
+
+    function itens_venda(){
+        return $this->hasMany(ItensVenda::class, 'id_produto', 'id');
+    }
+
+    function itens_compra(){
+        return $this->hasMany(ItensVenda::class, 'id_produto', 'id');
+    }
+
+
 }

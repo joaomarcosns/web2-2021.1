@@ -12,13 +12,13 @@ Route::get('/', function () {
 });
 
 Route::prefix('clientes')->group(function () {
-    Route::get('/', [ClienteController::class, 'index']);
-    Route::get('/create', [ClienteController::class, 'create']);
-    Route::post('/store', [ClienteController::class, 'store']);
-    Route::get('/show/{id}', [ClienteController::class, 'show']);
-    Route::get('/edit/{id}', [ClienteController::class, 'edit']);
-    Route::put('/update', [ClienteController::class, 'update']);
-    Route::delete('/destroy', [ClienteController::class, 'destroy']);
+    Route::get('/', [ClienteController::class, 'index'])->name('clientes.index');
+    Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create');
+    Route::post('/store', [ClienteController::class, 'store'])->name('clientes.store');
+    Route::get('/show/{id}', [ClienteController::class, 'show'])->name('clientes.show');
+    Route::get('/edit/{id}', [ClienteController::class, 'edit'])->name('clientes.edit');
+    Route::put('/update', [ClienteController::class, 'update'])->name('clientes.update');
+    Route::delete('/destroy', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 });
 
 Route::prefix('produtos')->group(function () {

@@ -46,7 +46,7 @@
                 <div class="card mt-2 mx-auto p-4 bg-light">
                     <div class="card-body bg-light">
                         <div class="container">
-                            <form id="contact-form" role="form" method="POST" action="./../update">
+                            <form id="contact-form" role="form" method="POST" action="{{route("clientes.update")}}">
                                 @csrf
                                 @method('PUT')
                                 <div class="controls">

@@ -18,9 +18,9 @@ class Fornecedor extends Model
         'endereco'
     ];
 
-    public function produtos()
+    public function entrada()
     {
-        return $this->hasMany(Produto::class);
+        return $this->hasMany(Entrada::class, 'id_fornecedor', 'id');
     }
 
     

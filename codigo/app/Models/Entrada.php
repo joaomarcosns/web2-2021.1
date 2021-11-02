@@ -20,7 +20,7 @@ class Entrada extends Model
         return $this->belongsTo(Fornecedor::class, 'idfornecedor','id');
     }
 
-    function itens_venda(){
+    function itens_entrada(){
         return $this->hasMany(ItensEntrada::class, 'identrada', 'id');
     }
 }

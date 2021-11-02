@@ -28,8 +28,8 @@ class Produto extends Model
         return $this->hasMany(ItensVenda::class, 'id_produto', 'id');
     }
 
-    function itens_compra(){
-        return $this->hasMany(ItensVenda::class, 'id_produto', 'id');
+    function itens_entrada(){
+        return $this->hasMany(ItensEntrada::class, 'id_produto', 'id');
     }
 
 

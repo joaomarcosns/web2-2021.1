@@ -48,7 +48,7 @@
                 <div class="card mt-2 mx-auto p-4 bg-light">
                     <div class="card-body bg-light">
                         <div class="container">
-                            <form id="contact-form" role="form" method="POST" action="./store">
+                            <form id="contact-form" role="form" method="POST" action="{{route("produtos.create")}}">
                                 @csrf
                                 <div class="controls">
                                     <div class="row">

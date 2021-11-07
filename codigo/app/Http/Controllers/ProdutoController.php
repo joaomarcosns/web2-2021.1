@@ -38,6 +38,18 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nome' => 'required|max:255',
+            'icms' => 'required|numeric',
+            'ipi' => 'required|numeric',
+            'frete' => 'required|numeric',
+            'precofabrica' => 'required|numeric',
+            'precocompra' => 'required|numeric',
+            'precovenda' => 'required|numeric',
+            'lucro' => 'required|numeric',
+            'desconto' => 'required|numeric',
+            'quantidade' => 'required|numeric',
+        ]);
         $produto = new Produto();
         $produto->nome = $request->nome;
         $produto->icms = $request->icms;

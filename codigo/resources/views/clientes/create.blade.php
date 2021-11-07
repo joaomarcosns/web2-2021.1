@@ -6,11 +6,20 @@
 
 @section('main')
     <div class="container mt-5">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row ">
             <div class="col-lg-7 mx-auto">
                 <div class="card mt-2 mx-auto p-4 bg-light">
                     <div class="card-body d-flex justify-content-center">
-                        <form id="contact-form" role="form" method="POST" action="{{route("clientes.store")}}">
+                        <form id="contact-form" role="form" method="POST" action="{{ route('clientes.store') }}">
                             @csrf
                             <div class="controls">
                                 <div class="row">

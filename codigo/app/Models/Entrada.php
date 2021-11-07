@@ -16,4 +16,12 @@ class Entrada extends Model
         'valortotal',
         'datacompra'
     ];
+    public function fornecedor(){
+        return $this->belongsTo(Fornecedor::class, 'idfornecedor','id');
+    }
+
+    function itens_venda(){
+        return $this->hasMany(ItensEntrada::class, 'identrada', 'id');
+    }
 }
+

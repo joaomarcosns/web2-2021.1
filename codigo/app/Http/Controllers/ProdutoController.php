@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -73,6 +74,12 @@ class ProdutoController extends Controller
     public function edit($id)
     {
         //
+        if($id){
+            $fornecedores = Fornecedor::findOrFail($id);
+            return view('fornecedores.edit', ['fornecedores' => $fornecedores]);
+        } else {
+            return redirect('fornecedores/');
+        }
     }
 
     /**
@@ -85,6 +92,10 @@ class ProdutoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
+        Fornecedor::findOrFail($request->id)->update($request->all());
+
+        return redirect('clientes/')->with('msg', 'Atualizado com sucesso!');
     }
 
     /**

@@ -16,4 +16,8 @@ class Cliente extends Model
         'endereco',
         'debito'
     ];
+    
+    function venda() {
+        return $this->hasMany(Endereco::class, 'cliente_id', 'id');
+    }
 }

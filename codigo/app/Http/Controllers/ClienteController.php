@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCliente;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
@@ -19,13 +20,9 @@ class ClienteController extends Controller
         return view('clientes.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCliente $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required|email',
-            'debito' => 'required|numeric',
-        ]);
+        $request->validate();
         
         $cliente = new Cliente();
         $cliente->nome = $request->nome;

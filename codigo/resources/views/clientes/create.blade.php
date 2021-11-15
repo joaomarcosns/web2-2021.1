@@ -32,15 +32,20 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="form_endereco">Endereço *</label>
-                                            <input id="form_endereco" type="text" name="endereco" class="form-control"
-                                                required="required">
+                                            <input id="form_endereco" type="text" name="endereco" class="form-control
+                                                @error('endereco') is-invalid @enderror">
+                                            @error('endereco')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="debito">Débito *</label>
-                                            <input type="text" name="debito" id="debito" class="form-control"
-                                                required="required">
+                                            <input type="text" name="debito" id="debito" class="form-control @error('debito') is-invalid @enderror">
+                                            @error('debito')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>

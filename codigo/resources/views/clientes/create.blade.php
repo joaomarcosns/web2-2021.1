@@ -1,51 +1,36 @@
-@extends('layouts/main')
+@extends('layouts.main')
 
-@section('titulo', 'Cadastrar Clentes')
-@section('h1', 'Cadastro de Clientes')
-
-
-@section('main')
-    <div class="container mt-5">
-        <div class="row ">
-            <div class="col-lg-7 mx-auto">
-                <div class="card mt-2 mx-auto p-4 bg-light">
-                    <div class="card-body d-flex justify-content-center">
-                        <form id="contact-form" role="form" method="POST" action="{{route("clientes.store")}}">
-                            @csrf
-                            <div class="controls">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label for="form_nome">Nome do Fornecedor *</label>
-                                        <input id="form_nome" type="text" name="nome" id="nome" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="form_endereco">Endereço *</label>
-                                            <input id="form_endereco" type="text" name="endereco" class="form-control"
-                                                required="required">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="debito">Débito *</label>
-                                            <input type="text" name="debito" id="debito" class="form-control"
-                                                required="required">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-4">
-                                    <div class="col-md-12">
-                                        <input type="submit" class="btn btn-success btn-send pt-2 btn-block "
-                                            value="Enviar">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+@section('conteudo')
+    <div class="titulo">
+        <h4>Cadastrar Cliente</h4>
     </div>
+    <form class="form" action="{{ route("clientes.store") }}" method="POST">
+        @csrf
+        <div class="input m-3">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control @error('nome') is-invalid @enderror" name="nome">
+            @error('nome')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="input m-3">
+            <label for="endereco">Endereço</label>
+            <input type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco">
+            @error('endereco')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="input m-3">
+            <label for="descricao">Descrição</label>
+            <input type="text" class="form-control" name="descricao">
+        </div>
+        <div class="input m-3">
+            <input type="submit" class="btn btn-sm btn-success p-2" value="Cadastrar">
+            <a href="{{route("clientes.index")}}" class="btn btn-sm btn-secondary p-2">Cancelar</a>
+        </div>
+    </form>
 @endsection

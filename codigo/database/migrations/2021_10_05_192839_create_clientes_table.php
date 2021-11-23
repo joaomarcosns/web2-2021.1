@@ -18,7 +18,8 @@ class CreateClientesTable extends Migration
             $table->timestamps();
             $table->string('nome', 60);
             $table->string('endereco', 60);
-            $table->float('debito');
+            $table->float('debito')->default(0);
+            $table->string('descricao')->nullable();
         });
     }
 

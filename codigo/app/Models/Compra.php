@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produto extends Model
+class Compra extends Model
 {
     use HasFactory;
-    protected $table = 'produtos';
+    protected $table = 'compras';
     protected $fillable = [
-        'nome', 
-        'valor_compra', 
-        'valor_venda', 
-        'porcentagem_lucro',
-        'quantidade'
+        'fornecedor_id',
+        'valor_total',
+        'quantidade',
+        'valor_compra'
     ];
 
-    public function itensVenda() {
-        return $this->hasMany(ItemVenda::class);
+    public function fornecedor() {
+        return $this->belongsTo(Fornecedor::class);
     }
 
     public function itensCompra() {

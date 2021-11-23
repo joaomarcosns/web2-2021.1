@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItensVendaTable extends Migration
+class CreateItemVendasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +15,15 @@ class CreateItensVendaTable extends Migration
     {
         Schema::create('itens_venda', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_produto');
-            $table->unsignedBigInteger('id_venda');
-            $table->decimal('valor_unitario', 7,2)->default(0);
-            $table->integer('quantidade');
+            $table->unsignedBigInteger('venda_id');
+            $table->unsignedBigInteger('produto_id');
+            $table->double('valor_unitario', 8,2);
+            $table->double('quantidade', 8,2);
+            $table->double('valor_total', 8,2);
             $table->timestamps();
 
-            $table->foreign('id_produto')->references('id')->on('produto')->onDelete('cascade');
-
-            $table->foreign('id_venda')->references('id')->on('venda')->onDelete('cascade');
+            $table->foreign('venda_id')->references('id')->on('vendas')->onDelete('cascade');
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
         });
     }
 

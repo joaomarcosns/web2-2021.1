@@ -1,0 +1,55 @@
+.conteudo table {
+    color: #E3E3E3;
+}
+
+table thead {
+    background-color: #E3E3E3;
+    color: #000;
+}
+
+table tr {
+    text-align: center;
+}
+
+table tbody {
+    background-color: #fff;
+}
+
+.valor, .cliente {
+    color: #E3E3E3;
+    width: 80%;
+    font-size: 18px;
+    background-color: #fff;
+    padding: 7px;
+    border: 1px solid #E3E3E3;
+}
+
+.title-table {
+    color: #E3E3E3;
+    font-size: 17px;
+    width: 80%;
+    padding: 7px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#myTable_wrapper {
+    height: 100%;
+    width: 120%;
+}
+
+.table.dataTable tbody tr {
+    color: #000;
+}
+
+.dataTables_wrapper table.mdc-data-table__table {
+    table-layout: fixed;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover  {
+    background-color: #E0E0E0;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+}

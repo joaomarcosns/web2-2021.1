@@ -2,79 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFornecedorRequest;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
 {
-    public function show()
-    {
-        $fornecedores = Fornecedor::all();
-
-        echo $fornecedores;
+    public function index() {
+        return view('fornecedores.index', ['fornecedores' => Fornecedor::all()->sortBy('id')]);
     }
 
-    public function index()
-    {
-        $fornecedores = Fornecedor::all();
-
-        return view('fornecedores.index', ['fornecedores' => $fornecedores]);
-    }
-
-    public function create()
-    {
+    public function create() {
         return view('fornecedores.create');
     }
 
-    public function store(Request $request)
-    {
-        $fornecedor = new Fornecedor();
-        $fornecedor->nome = $request->nome;
-        $fornecedor->cnpj = $request->cnpj;
-        $fornecedor->telefone = $request->telefone;
-        $fornecedor->endereco = $request->endereco;
-        $fornecedor->save();
-
-        return redirect('fornecedores/');
+    public function store(StoreFornecedorRequest $request) {
+        Fornecedor::create($request->all());
+        return redirect()->route('fornecedores.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+    public function show($id) {
         //
-        if ($id) {
-            $fornecedores = Fornecedor::findOrFail($id);
-            return view('fornecedores.edit', ['fornecedores' => $fornecedores]);
-        } else {
-            return redirect('fornecedores/');
-        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-
-        Fornecedor::findOrFail($request->id)->update($request->all());
-
-        return redirect('fornecedores/')->with('msg', 'Atualizado com sucesso!');
+    public function edit($id) {
+        $fornecedor = Fornecedor::find($id);
+        return view('fornecedores.edit', ['fornecedor' => $fornecedor]);
     }
 
-    public function destroy(Request $request)
-    {
-        Fornecedor::findOrFail($request->id)->delete();
+    public function update(StoreFornecedorRequest $request, $id) {
+        Fornecedor::findOrFail($id)->update($request->all());
+        return redirect()->route('fornecedores.index');
+    }
 
-        return redirect('fornecedores/')->with('msg', 'Excluído com sucesso!');
+    public function destroy($id) {
+        Fornecedor::findOrFail($id)->delete();
+        return redirect()->route('fornecedores.index');
     }
 }

@@ -1,0 +1,28 @@
+.conteudo .form {
+    width: 80%;
+    color: #000;
+    background-color: #E3E3E3;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.input, 
+.form-venda .input {
+    margin: 15px;
+}
+
+.form-compra .buttons, 
+.form-venda .buttons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.form-compra .input-submit, 
+.form-venda .input-submit {
+    border-top: dotted 1px #E3E3E3;
+} 
+
+button {
+    cursor: pointer !important;
+}

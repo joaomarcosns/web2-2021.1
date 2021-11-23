@@ -1,51 +1,44 @@
-@extends('layouts/main')
+@extends('layouts.main')
 
-@section('titulo', 'Listagem de Fonecedores')
-@section('h1', 'lista de Fornecedores')
-
-
-@section('main')
-    <div class="container pt-5">
-        <div class="div-btn">
-            <a href="{{ route('fornecedores.create') }}" class="btnn mt-2">Adicionar</a>
-        </div>
-        <table class="table table-striped table-hover mt-5">
-            <thead>
-                <tr>
-                    <th scope="col">Nome do Fornecedor</th>
-                    <th scope="col">CNPJ</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">Criado em</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($fornecedores as $fornecedor)
-                    <tr>
-                        <td>{{ $fornecedor->nome }}</td>
-                        <td>{{ $fornecedor->cnpj }}</td>
-                        <td>{{ $fornecedor->telefone }}</td>
-                        <td>{{ $fornecedor->endereco }}</td>
-                        <td>{{ $fornecedor->created_at }}</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <div class="mr-2" style="margin-right: 10px ">
-                                    <a href="#"
-                                        class="btn btn-sm btn-warning">EDITAR</a>
-                                </div>
-                                <form method="post" action="./fornecedores/destroy">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $fornecedor->id }}" />
-
-                                    <input type="submit" class="btn btn-sm btn-danger" value="DELETAR" />
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+@section('conteudo')
+    <div class="titulo">
+        <h4>Tabela de Fornecedores</h4>
+        <a href="{{ route("fornecedores.create") }}" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus mr-1"></i>
+            Cadastrar fornecedor
+        </a>
     </div>
+    <table class="table mb-5" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($fornecedores as $fornecedor)
+                <tr>
+                    <th scope="col">{{ $fornecedor->id }}</th>
+                    <td>{{ mb_strtoupper($fornecedor->nome) }}</td> 
+                    <td>{{ $fornecedor->telefone }}</td>
+                    <td>{{ mb_strtoupper($fornecedor->endereco) }}</td>
+                    <td class="d-flex justify-content-center">
+                        <a href="{{ route("fornecedores.edit", $fornecedor->id) }}" class="btn btn-warning btn-sm m-1">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <form action="{{ route("fornecedores.destroy", $fornecedor->id) }}" class="m-0 p-0" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger btn-sm m-1" onclick="confirm('Deseja realmente apagar esse item?') ? this.parentElement.submit() : ''">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection

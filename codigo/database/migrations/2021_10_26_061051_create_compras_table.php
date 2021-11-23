@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEntradasTable extends Migration
+class CreateComprasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateEntradasTable extends Migration
      */
     public function up()
     {
-        Schema::create('entradas', function (Blueprint $table) {
+        Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idfornecedor');
-            $table->foreign('idfornecedor')->references('id')->on('fornecedores');
-            $table->decimal('valortotal', 7, 2)->default(0);
-            $table->datetime('datacompra')->useCurrent();
+            $table->unsignedBigInteger('fornecedor_id');
+            $table->double('valor_total', 8,2);
             $table->timestamps();
+
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateEntradasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entradas');
+        Schema::dropIfExists('compras');
     }
 }

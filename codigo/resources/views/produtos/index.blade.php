@@ -1,46 +1,76 @@
-@extends('layouts.main')
+@extends('layout.layout')
+
+@section('title', 'Dashboard')
 
 @section('conteudo')
-    <div class="titulo">
-        <h4>Tabela de Produtos</h4>
-        <a href="{{ route("produtos.create") }}" class="btn btn-primary btn-sm">
-            <i class="fas fa-plus mr-1"></i>
-            Cadastrar produto
-        </a>
+    <div class="dashboard">
+        <div class="title-content">
+            <div class="title-text">
+                <span>
+                    <a href="{{ route('dashboard.index') }}">
+                        <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
+                        Dashboard
+                    </a>
+                </span>
+                <span>/</span>
+                <span>
+                    <img src="{{ asset('img/product-dark.svg') }}" alt="Produto">
+                    Produtos
+                </span>
+            </div>
+        </div>
+
+        <div class="item-area">
+            <div class="manage-item-top">
+
+                <button type="button" id="btn" data-toggle="modal" data-target="#cadastrar-produto-modal">
+                    <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar produto">
+                    Cadastrar Produto
+                </button>
+                <!-- modal para cadastro do produto -->
+                @include('produtos.create')
+
+            </div>
+            <div class="table-item-area">
+                <table id="table-item">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome do Produto</th>
+                            <th>Categoria</th>
+                            <th>Preço de Compra</th>
+                            <th>Preço de Venda</th>
+                            <th>Quantidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($produtos as $categoria)
+                            <tr id="item-details">
+                                <td>{{$categoria->id}}</td>
+                                <td>{{$categoria->nome_produto}}</td>
+                                <td>{{$categoria->nome_categoria}}</td>
+                                <td>R$ {{$categoria->preco_compra}}</td>
+                                <td>R$ {{$categoria->preco_venda}}</td>
+                                <td>{{$categoria->quantidade}}</td>
+                                <td>
+                                    <button type="button" title="Ver produto">
+                                        <img src="{{ asset('img/eye-icon.svg') }}" alt="Ver produto">
+                                    </button>
+                                    <button type="button" title="Editar produto">
+                                        <img src="{{ asset('img/pencil-icon.svg') }}" data-toggle="modal"
+                                            data-target="#editar-produto-modal" alt="Editar produto">
+                                    </button>
+                                    <button type="button" title="Exluir produto">
+                                        <img src="{{ asset('img/trash-icon.svg') }}" alt="Exluir produto">
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <table class="table mb-5" id="myTable">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Valor de compra</th>
-                <th scope="col">Valor de venda</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($produtos as $produto)
-                <tr>
-                    <th scope="col">{{ $produto->id }}</th>
-                    <td>{{ mb_strtoupper($produto->nome) }}</td> 
-                    <td>R$ {{ money_format('%i', $produto->valor_compra) }}</td>
-                    <td>R$ {{ money_format('%i', $produto->valor_venda) }}</td>
-                    <td>{{ $produto->quantidade }}</td>
-                    <td class="d-flex justify-content-center">
-                        <a href="{{ route("produtos.edit", $produto->id) }}" class="btn btn-warning btn-sm m-1">
-                            <i class="far fa-edit"></i>
-                        </a>
-                        <form action="{{ route("produtos.destroy", $produto->id) }}" class="m-0 p-0" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" class="btn btn-danger btn-sm m-1" onclick="confirm('Deseja realmente apagar esse item?') ? this.parentElement.submit() : ''">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    </div>
 @endsection

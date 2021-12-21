@@ -1,46 +1,85 @@
-@extends('layouts.main')
+@extends('layout.layout')
+@section('title', 'Clientes')
 
 @section('conteudo')
-    <div class="titulo">
-        <h4>Tabela de clientes</h4>
-        <a href="{{ route("clientes.create") }}" class="btn btn-primary btn-sm">
-            <i class="fas fa-plus mr-1"></i>
-            Cadastrar cliente
-        </a>
+    <div class="dashboard">
+        <div class="title-content">
+            <div class="title-text">
+                <span>
+                    <a href="{{ route('dashboard.index') }}">
+                        <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
+                        Dashboard
+                    </a>
+                </span>
+                <span>/</span>
+                <span>
+                    <img src="{{ asset('img/people-icon.svg') }}" alt="Clientes">
+                    Clientes
+                </span>
+            </div>
+        </div>
+
+        <div class="item-area">
+            <div class="manage-item-top">
+                <button type="button" id="btn" data-toggle="modal" data-target="#cadastrar-cliente-modal">
+                    <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar cliente">
+                    Cadastrar Cliente
+                </button>
+            </div>
+            <!-- include moda -->
+            @include('clientes.create')
+            @include('clientes.show')
+            @include('clientes.create-endereco')
+            @include('clientes.create-contatos')
+            <!-- include modal -->
+
+            <div class="table-item-area" id="tableClientes">
+                <table id="table-item" class="mdl-data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome do Cliente</th>
+                            <th>CPF</th>
+                            <th>Crédito</th>
+                            <th>Debito</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($clientes as $cliente)
+                            <tr>
+                                <td class="idCliente">{{ $cliente->id }}</td>
+                                <td>{{ $cliente->nome }}</td>
+                                <td>{{ $cliente->cpf }}</td>
+                                <td>R$ {{ $cliente->credito }}</td>
+                                <td>R$ {{ $cliente->debito }}</td>
+                                <td>
+                                    <button class="ver_cliente" title="Ver cliente" data-bs-toggle="modal"
+                                        data-bs-target="#show-cliente-modal">
+                                        <img src="{{ asset('img/eye-icon.svg') }}" alt="">
+                                    </button>
+                                    <button title="Editar cliente" onclick="">
+                                        <img src="{{ asset('img/pencil-icon.svg') }}" alt="">
+                                    </button>
+
+                                    <button title="Exluir cliente">
+                                        <img src="{{ asset('img/trash-icon.svg') }}" alt="">
+                                    </button>
+                                    <button title="Adicionar Contatos" data-bs-toggle="modal"
+                                        data-bs-target="#create-contatos-modal" class="cadastro_contatos">
+                                        <img src="{{ asset('img/phone-plus-icon.svg') }}" alt="">
+                                    </button>
+                                    <button title="Adicionar Endreço" data-bs-toggle="modal"
+                                        data-bs-target="#create-endereco" class="cadastro_endereco">
+                                        <img src="{{ asset('img/map-plus-icon.svg') }}" alt="">
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
     </div>
-    <table class="table mb-5" id="myTable">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Débito</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($clientes as $cliente)
-                <tr>
-                    <th>{{ $cliente->id }}</th>
-                    <td>{{ mb_strtoupper($cliente->nome) }}</td> 
-                    <td>R$ {{ money_format('%i', $cliente->debito) }}</td>
-                    <td>{{ $cliente->endereco }}</td>
-                    <td>{{ $cliente->descricao ? $cliente->descricao : "Sem descrição" }}</td>
-                    <td class="d-flex justify-content-center">
-                        <a href="{{ route("clientes.edit", $cliente->id) }}" class="btn btn-warning btn-sm m-1">
-                            <i class="far fa-edit"></i>
-                        </a>
-                        <form action="{{ route("clientes.destroy", $cliente->id) }}" class="p-0 m-0" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" class="btn btn-danger btn-sm m-1" onclick="confirm('Deseja realmente apagar esse item?') ? this.parentElement.submit() : ''">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
 @endsection

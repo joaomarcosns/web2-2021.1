@@ -11,6 +11,7 @@
   $ chmod -R 777 storage # adiciona todas as permissões na pasta storage <br>
   $ php artisan key:generate # gera a chave da aplicação <br>
   $ php artisan storage:link <br>
+  $ php artisan migrate
   
-  OBS Caso der algum erro, sugiro que clone esse repositorio https://github.com/joaomarcosns/laravendas.git <br>
-  E segua todas as intruções acima, apenas iguinorar o número 3
+ OBS Caso der algum erro, sugiro que clone esse repositorio https://github.com/joaomarcosns/laravendas.git <br>
+ E segua todas as intruções acima, apenas iguinorar o número 3

@@ -81,7 +81,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    var message = "teste"
+                    var message = "Cadastro realizado com sucesso!";
                     $('#toast').append(
                         `<div class="toast-body bg-green" id="message">${message}</div>`
                     );
@@ -95,6 +95,7 @@
                     $('#cadastrar-produto-modal').modal({
                         keyboard: false
                     })
+                    location.reload();
 
                 },
                 error: function(response) {

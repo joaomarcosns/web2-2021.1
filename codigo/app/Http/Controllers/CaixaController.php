@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CaixaRequest;
+use App\Models\Caixa;
 use App\validate\ValidarLogin;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,8 @@ class CaixaController extends Controller
         if (!ValidarLogin::verificaSessao()) {
             return redirect()->route('login.create');
         }
-        return view('caixa.index');
+        $caixas = Caixa::all()->where('status', '=', true);
+        return view('caixa.index', compact('caixas'));
     }
 
     /**
@@ -27,7 +30,10 @@ class CaixaController extends Controller
      */
     public function create()
     {
-        //
+        if (!ValidarLogin::verificaSessao()) {
+            return redirect()->route('login.create');
+        }
+        return view('caixa.index');
     }
 
     /**
@@ -36,9 +42,14 @@ class CaixaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CaixaRequest $request)
     {
-        //
+        if (!ValidarLogin::verificaSessao()) {
+            return redirect()->route('login.create');
+        }
+
+        $caixa = Caixa::create($request->all());
+        return json_encode($caixa);
     }
 
     /**
@@ -49,7 +60,9 @@ class CaixaController extends Controller
      */
     public function show($id)
     {
-        //
+        $caixa = Caixa::find($id);
+
+        return json_encode($caixa);
     }
 
     /**

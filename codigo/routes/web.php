@@ -25,6 +25,7 @@ Route::prefix('login')->group(function () {
 Route::prefix("dashboard")->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/graficoUm', [DashboardController::class, 'graficoUm'])->name('dashboard.graficoUm');
+    Route::get('/graficoDois', [DashboardController::class, 'graficoDois'])->name('dashboard.graficoDois');
 });
 
 Route::prefix("cliente")->group(function () {
@@ -53,8 +54,8 @@ Route::prefix('categoria')->group(function () {
     Route::post('/store', [CategoriaController::class, 'store'])->name('categoria.store');
     Route::get('/show/{id}', [CategoriaController::class, 'show'])->name('categoria.show');
     Route::get('/edit/{id}', [CategoriaController::class, 'edit'])->name('categoria.edit');
-    Route::put('/update/{id}', [CategoriaController::class, 'update'])->name('categoria.update');
-    Route::delete('/destroy/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
+    Route::put('/update', [CategoriaController::class, 'update'])->name('categoria.update');
+    Route::delete('/destroy', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
 });
 
 Route::prefix('produto')->group(function () {
@@ -63,26 +64,36 @@ Route::prefix('produto')->group(function () {
     Route::post('/store', [ProdutosController::class, 'store'])->name('produto.store');
     Route::get('/show/{id}', [ProdutosController::class, 'show'])->name('produto.show');
     Route::get('/edit/{id}', [ProdutosController::class, 'edit'])->name('produto.edit');
-    Route::put('/update/{id}', [ProdutosController::class, 'update'])->name('produto.update');
-    Route::delete('/destroy/{id}', [ProdutosController::class, 'destroy'])->name('produto.destroy');
+    Route::put('/update', [ProdutosController::class, 'update'])->name('produto.update');
+    Route::delete('/destroy', [ProdutosController::class, 'destroy'])->name('produto.destroy');
 });
 
 Route::prefix('venda')->group(function () {
     Route::get('/', [VendaController::class, 'index'])->name('venda.index');
     Route::get('/create', [VendaController::class, 'create'])->name('venda.create');
+    Route::get('/getAll', [VendaController::class, 'getAll'])->name('venda.getAll');
+    Route::post('/store', [VendaController::class, 'store'])->name('venda.store');
+
 });
 
 Route::prefix('compra')->group(function () {
     Route::get('/', [CompraController::class, 'index'])->name('compra.index');
     Route::get('/create', [CompraController::class, 'create'])->name('compra.create');
+    Route::get('/getAll', [CompraController::class, 'getAll'])->name('compra.getAll');
+    Route::post('/store', [CompraController::class, 'store'])->name('compra.store');
 });
 
 Route::prefix('funcionario')->group(function () {
     Route::get('/', [FuncionarioController::class, 'index'])->name('funcionario.index');
     Route::get('/create', [FuncionarioController::class, 'create'])->name('funcionario.create');
+    Route::get('/getCaixas', [FuncionarioController::class, 'getCaixas'])->name('funcionario.getCaixas');
+    Route::post('/store', [FuncionarioController::class, 'store'])->name('funcionario.store');
+    Route::get('/show/{id}', [FuncionarioController::class, 'show'])->name('funcionario.show');
 });
 
 Route::prefix('caixa')->group(function () {
     Route::get('/', [CaixaController::class, 'index'])->name('caixa.index');
     Route::get('/create', [CaixaController::class, 'create'])->name('caixa.create');
+    Route::post('/store', [CaixaController::class, 'store'])->name('caixa.store');
+    Route::get('/show/{id}', [CaixaController::class, 'show'])->name('caixa.show');
 });

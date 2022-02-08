@@ -10,7 +10,7 @@
 #
 
 <p align="center">
-  🔗 <a href="http://sisvendaweb.herokuapp.com/">Clique aqui</a> para acessar a aplicação online.
+  🔗 <a href="https://laravenda.herokuapp.com/">Clique aqui</a> para acessar a aplicação online.
 </p>
 
 #
@@ -75,7 +75,8 @@
   </ul>
 </ul>
 
-#
+### ⚠️ → Instalando localmente
+- Casso o sistema não funciona, colone esse repsitorio https://github.com/joaomarcosns/laravendas e começa da entrução da .env
 
 <p align="center">
   <i>Developed with 🖤 by <a href="https://github.com/joaomarcosns" >João Marcos Neves da Silva</a></i>

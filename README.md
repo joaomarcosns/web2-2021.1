@@ -117,16 +117,6 @@
   # Cria um servidor em sua localhost na porta 8000 a partir do próprio php
   $ php -S localhost:8000 public/index.php
 ```
-
-#
-
-### 📄 →  Licença:
-<ul>
-  <ul>
-    <li><a href="">Licença</a></li>
-  </ul>
-</ul>
-
 #
 
 <p align="center">

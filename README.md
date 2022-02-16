@@ -56,6 +56,8 @@
 
 <p align="center">
   🔗 <a href="https://sisconve-joao-marcos.herokuapp.com/">Clique aqui</a> para acessar a aplicação online.
+      <p align="center">Usuario: admin@admin.com</p>
+      <p align="center">Senha: admin</p>
 </p>
 ### 📌 → Instalando localmente
 - Pré requisitos: <a href="https://www.php.net/">PHP</a> `>= 7` e <a href="https://getcomposer.org/">Composer</a> `>= 2`
@@ -119,6 +121,11 @@
 ```
 #
 
+<p align="center">
+  <i>OBS: layout foi aproveitado do primiero projeto feito <a href="https://github.com/WebI-2020-2/sisconve" >Sisconve</a></i>
+</p>
+
+#
 <p align="center">
   <i>Developed with 🖤 by <a href="https://github.com/joaomarcosns" >João Marcos Neves da Silva</a></i>
 </p>
